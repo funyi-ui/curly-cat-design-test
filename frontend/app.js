@@ -75,6 +75,7 @@ function setLanguage(value, persist = true) {
   $('question').textContent = copy().questions[topic];
   motionLabel();
   renderReading();
+  if (document.dispatchEvent) document.dispatchEvent(new CustomEvent('member-language-change'));
   return true;
 }
 function shuffle() {

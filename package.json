@@ -3,9 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "description": "Curly Cat fortune website — local development export",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
-    "dev": "node frontend/dev-server.mjs",
-    "test": "node frontend/tests/i18n.cjs"
+    "dev": "node backend/server.mjs",
+    "preview": "node frontend/dev-server.mjs",
+    "test": "node frontend/tests/i18n.cjs && node --test backend/tests/*.test.mjs",
+    "test:live": "node --env-file-if-exists=.env.test backend/tests/live.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.117.2",
+    "connect-pg-simple": "^10.0.0",
+    "dotenv": "^18.0.4",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "express-session": "^1.19.0",
+    "helmet": "^8.3.0",
+    "pg": "^8.23.0",
+    "zod": "^4.6.5"
   }
 }

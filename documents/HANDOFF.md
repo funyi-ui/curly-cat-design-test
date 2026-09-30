@@ -1,5 +1,12 @@
 # 개발 인수인계
 
+## 이메일 회원 기능 작업 상태
+- `feature/member-auth`에서 기존 디자인을 유지한 회원 UI·Supabase Auth API·PostgreSQL 서버 세션을 추가.
+- `npm run dev`는 backend/server.mjs를 실행. 순수 디자인 미리보기는 `npm run preview`.
+- 실제 외부 연결 정보가 아직 없어 회원 기능은 비활성 상태. 연결·두 계정 실검증·이메일 도착·서버 재시작 검증이 남아 있음.
+- 상세 설정·Windows cmd 명령·검증 절차는 backend/README.md. 비밀정보는 Git 제외 .env/.env.test에만 보관.
+- 내 기록장은 회원만 접근 가능한 빈 화면. 질문·답변 저장·삭제, AI·광고·결제·Google은 이번에 연결하지 않음.
+
 ## 유지할 디자인과 동작
 - 아이보리 종이 위 흑백 낙서 고양이 방
 - 곱슬 장모 고양이, 별 망토, 달 창문, 책·보석 선반, 책상

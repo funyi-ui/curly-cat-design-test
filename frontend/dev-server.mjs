@@ -7,6 +7,9 @@ const files = new Map([
   ['/style.css', ['style.css', 'text/css; charset=utf-8']],
   ['/app.js', ['app.js', 'text/javascript; charset=utf-8']],
   ['/i18n.js', ['i18n.js', 'text/javascript; charset=utf-8']],
+  ['/member-locales.js', ['member-locales.js', 'text/javascript; charset=utf-8']],
+  ['/member.js', ['member.js', 'text/javascript; charset=utf-8']],
+  ['/member.css', ['member.css', 'text/css; charset=utf-8']],
   ['/cat.png', ['cat.png', 'image/png']],
   ['/room.png', ['room.png', 'image/png']]
 ]);

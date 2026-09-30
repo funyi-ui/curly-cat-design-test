@@ -21,7 +21,7 @@ function boot(languages = ['ko-KR'], saved = null, blocked = false) {
   const document = {getElementById: id => elements.find(e=>e.attrs.id===id), querySelectorAll:queryAll, querySelector:s=>queryAll(s)[0], documentElement:{lang:'ko',classList:{toggle(){}},addEventListener(){}}, addEventListener(){}, hidden:false};
   let stored=saved;
   const context=vm.createContext({document,navigator:{languages,language:languages[0]},localStorage:{getItem(){if(blocked)throw Error('blocked');return stored;},setItem(k,v){if(blocked)throw Error('blocked');stored=v;}},crypto:require('node:crypto').webcrypto,matchMedia:()=>({matches:false,addEventListener(){}}),setInterval(){},setTimeout(){}});
-  for(const file of ['i18n.js','app.js']) vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),context);
+  for(const file of ['i18n.js','member-locales.js','app.js']) vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),context);
   return {document,context,run:code=>vm.runInContext(code,context),stored:()=>stored,elements};
 }
 for(const [tags,saved,expected] of [

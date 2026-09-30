@@ -1,0 +1,11 @@
+{
+  "name": "meow0930-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Curly Cat fortune website — local development export",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "node frontend/dev-server.mjs",
+    "test": "node frontend/tests/i18n.cjs"
+  }
+}

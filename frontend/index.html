@@ -1,0 +1,27 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>꼬불 고양이 점집 · 오늘의 한 장</title><meta name="description" content="작은 낙서 점집에서 고양이와 함께 뽑는 오늘의 타로 한 장."><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23f6f1e5'/%3E%3Ctext x='16' y='25' text-anchor='middle' font-size='28'%3E✦%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"></head><body>
+<header><a data-i18n="brand" class="brand" href="./">✳ 꼬불 고양이 점집</a><span class="header-note" data-i18n="headerNote">마음이 쉬어 가는 작은 점집</span><div class="header-controls"><label class="language-control"><span class="sr-only" data-i18n="language">언어 선택</span><select id="language"><option value="ko" lang="ko">한국어</option><option value="en" lang="en">English</option><option value="id" lang="id">Bahasa Indonesia</option><option value="fr" lang="fr">Français</option><option value="es" lang="es">Español</option></select></label><button class="soundless" id="motion" aria-pressed="false">움직임 끄기</button></div></header>
+<main>
+<section class="welcome" aria-labelledby="welcome-title">
+  <div><span class="eyebrow" data-i18n="eyebrow">너를 위한 작은 마법</span><h1 id="welcome-title" data-i18n="roomHeading">고양이의 작은 방에 어서 와.</h1></div>
+  <div class="welcome-choice"><div id="topics" class="topics" role="group" aria-label="타로 질문 주제"><button class="topic selected" aria-pressed="true" data-i18n="today" data-topic="today">오늘의 나</button><button class="topic" aria-pressed="false" data-i18n="love" data-topic="love">사랑과 관계</button><button class="topic" aria-pressed="false" data-i18n="work" data-topic="work">일과 도전</button></div><p class="question" id="question"></p></div>
+</section>
+<section class="room" aria-labelledby="reading-title">
+ <div class="room-topline"><h2 id="reading-title" data-i18n="readingTitle">마음이 가는 한 장</h2><span id="step"></span></div>
+ <div class="room-viewport"><div class="room-stage">
+  <img class="room-art" src="room.png" alt="" width="1536" height="1024">
+  <p class="speech" id="cat-caption" aria-live="polite"></p>
+  <button class="cat-host" id="greet" aria-label="고양이에게 인사하기"><span class="cat-wrap" id="cat"><img id="cat-img" src="cat.png" alt="별 망토를 입은 곱슬 고양이" width="1254" height="1254"><span class="eye eye-left" aria-hidden="true"><i></i></span><span class="eye eye-right" aria-hidden="true"><i></i></span></span></button>
+  <div class="deck" id="deck">
+   <button class="card" aria-label="왼쪽 카드 뽑기" data-card="0"><span class="card-inner"><span class="card-star">✧</span><span class="card-orbit">☾</span><span class="card-star">✧</span></span><span class="card-index">I</span></button>
+   <button class="card" aria-label="가운데 카드 뽑기" data-card="1"><span class="card-inner"><span class="card-star">✧</span><span class="card-orbit">☾</span><span class="card-star">✧</span></span><span class="card-index">II</span></button>
+   <button class="card" aria-label="오른쪽 카드 뽑기" data-card="2"><span class="card-inner"><span class="card-star">✧</span><span class="card-orbit">☾</span><span class="card-star">✧</span></span><span class="card-index">III</span></button>
+  </div>
+  <a href="#result" class="table-reading" id="table-reading" hidden><span id="table-symbol" aria-hidden="true"></span><strong id="table-title"></strong><span class="read-label" data-i18n="openReading">해석 읽기</span></a>
+ </div></div>
+ <p data-i18n="deckNote" class="deck-note" id="deck-note">정답은 없어. 조금 더 눈길이 가는 쪽으로.</p>
+</section>
+<section id="result" class="result" hidden tabindex="-1" aria-live="polite" aria-labelledby="result-title">
+ <div class="result-art"><span id="result-number"></span><strong id="result-symbol" aria-hidden="true"></strong><span id="result-en"></span></div>
+ <div class="result-copy"><span class="eyebrow" data-i18n="resultIntro">고양이가 건네는 오늘의 이야기</span><h3 id="result-title"></h3><p id="result-text"></p><p class="action" id="result-action"></p><button id="again" class="again"><span data-i18n="again">다시 섞어 보기</span> <span aria-hidden="true">✳</span></button></div>
+</section>
+</main><footer><span data-i18n="footer">작은 우연, 다정한 해석.</span><span data-i18n="disclaimer">재미와 자기 성찰을 위한 타로예요. 선택의 주인은 언제나 당신이에요.</span></footer><script src="i18n.js"></script><script src="app.js"></script></body></html>

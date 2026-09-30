@@ -31,11 +31,23 @@ Supabase `auth.users.id` UUID가 회원 ID이며 로그인·로그아웃·새로
 cd /d C:\Users\hka11\Desktop\meow0930
 npm ci
 copy .env.example .env
-node -e "console.log(require('node:crypto').randomBytes(48).toString('base64url'))"
+node -e "const fs=require('node:fs');const p='.env';const s=fs.readFileSync(p,'utf8');if(!/^SESSION_SECRET=[ \t]*$/m.test(s))throw Error('SESSION_SECRET must be empty');fs.writeFileSync(p,s.replace(/^SESSION_SECRET=[ \t]*$/m,'SESSION_SECRET='+require('node:crypto').randomBytes(48).toString('base64url')));"
 notepad .env
 ```
 
-생성된 무작위 값을 SESSION_SECRET에 넣습니다. .env에 실제 SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, DATABASE_URL, SESSION_SECRET을 입력하세요. .env는 Git 제외 대상입니다. 키·DB 비밀번호·세션 비밀값은 채팅이나 frontend에 넣지 마세요.
+위 명령은 무작위 SESSION_SECRET을 화면에 출력하지 않고 로컬 .env에 직접 저장합니다. 기존 값이 있으면 덮어쓰지 않습니다. 나머지 값은 .env에 직접 입력하세요. .env는 Git 제외 대상입니다. 키·DB 비밀번호·세션 비밀값은 채팅이나 frontend에 넣지 마세요. 이미 .env가 있으면 copy 명령으로 덮어쓰지 마세요.
+
+| 변수명 | 로컬에 입력할 값 / 찾는 위치 |
+|---|---|
+| APP_ORIGIN | 로컬 사이트 주소 `http://127.0.0.1:5173` (끝에 / 없음) |
+| PORT | `5173` |
+| NODE_ENV | `development` |
+| SUPABASE_URL | 프로젝트 Connect의 API 연결 안내에 표시된 Project URL |
+| SUPABASE_PUBLISHABLE_KEY | Settings → API Keys의 publishable key. secret/service_role 아님 |
+| DATABASE_URL | Connect → Connection string → Session pooler의 URI. 실제 DB 비밀번호는 로컬에서만 입력 |
+| SESSION_SECRET | 위 명령이 로컬에서 생성·저장하는 무작위 값 |
+
+DB 설정 파일은 `backend/schema.sql` 하나입니다. 프로젝트 생성 후 SQL Editor에서 파일 전체를 한 번 실행하고 성공을 확인한 뒤 서버를 시작합니다. 이 파일 안에서 스키마 → 테이블 → 인덱스 → RLS/권한 순서로 실행되므로 나누어 실행하지 않습니다. 별도의 회원 테이블 마이그레이션은 없고 Supabase Auth가 회원을 관리합니다.
 
 ```cmd
 npm run dev

@@ -1,4 +1,5 @@
 import express from 'express';
+import { installLiuyao } from './liuyao.mjs';
 import session from 'express-session';
 import helmet from 'helmet';
 import { rateLimit } from 'express-rate-limit';
@@ -32,7 +33,7 @@ function providerFailure(res, error, signup = false) {
   return failure(res, signup ? 400 : 401, signup ? 'signupFailed' : 'invalidCredentials');
 }
 
-export function createApp({ config, store, provider, limits = {} }) {
+export function createApp({ config, store, provider, limits = {}, liuyao }) {
   if (config.configured && (!store || !provider)) throw new Error('Authentication requires a database session store and provider.');
   const app = express();
   app.disable('x-powered-by');
@@ -105,6 +106,7 @@ export function createApp({ config, store, provider, limits = {} }) {
     }
     next();
   });
+  app.locals.liuyaoControl = installLiuyao(app, { configuration: liuyao, config, currentUser, guarded });
   app.use('/api', express.json({ limit: '4kb' }));
   async function currentUser(req, res) {
     let tokens = req.session.tokens;
@@ -197,7 +199,7 @@ export function createApp({ config, store, provider, limits = {} }) {
     const { error } = await provider.confirm(token);
     res.redirect(error ? '/?confirmation=failed' : '/?confirmation=success');
   });
-  const assets = new Set(['index.html', 'style.css', 'app.js', 'i18n.js', 'cat.png', 'room.png', 'member.js', 'member-locales.js', 'member.css']);
+  const assets = new Set(['index.html', 'style.css', 'app.js', 'i18n.js', 'cat.png', 'room.png', 'member.js', 'member-locales.js', 'member.css', 'liuyao.js']);
   app.use((req, res, next) => {
     const name = req.path === '/' ? 'index.html' : req.path.slice(1);
     if (!['GET', 'HEAD'].includes(req.method) || !assets.has(name)) return next();

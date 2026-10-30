@@ -5,6 +5,7 @@ import connectPgSimple from 'connect-pg-simple';
 import { readConfig } from './config.mjs';
 import { createAuthProvider } from './provider.mjs';
 import { createApp } from './app.mjs';
+import { readLiuyaoConfig } from './liuyao.mjs';
 
 const config = readConfig();
 let pool;
@@ -20,7 +21,9 @@ if (config.configured) {
 } else {
   console.warn(`Member authentication is NOT connected. Missing: ${config.missing.join(', ')}`);
 }
-const app = createApp({ config, store, provider: config.configured ? createAuthProvider(config) : null });
+const liuyao = readLiuyaoConfig(config);
+delete process.env.LIUYAO_BFF_REGISTRY_JSON;
+const app = createApp({ config, store, liuyao, provider: config.configured ? createAuthProvider(config) : null });
 // Local-only binding by default. A future deployment must explicitly configure its proxy.
 const server = app.listen(config.port, '127.0.0.1', () => {
   console.log(`Cat fortune website: ${config.origin}`);
